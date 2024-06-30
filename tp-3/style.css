@@ -1,1 +1,20 @@
-
+    text-align: center;
+}
+p{
+    font-family: sans-serif;
+}
+#primer-parrafo{
+background-color: #CEE;
+}
+#primer-parrafo, em{
+    color: #933;
+}
+a{
+    outline: 1px solid #333
+}
+p.fuente{
+    opacity: 100%;
+}
+p{
+    text-shadow: none
+}
