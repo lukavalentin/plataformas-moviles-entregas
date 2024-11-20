@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Editor de Texto - DOM y JavaScript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-1 my-sm-2 my-md-4 my-lg-5">
+        <h1>Editor de Texto</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2>Texto</h2>
+
+                <p class="texto" id="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec elementum auctor libero, vel imperdiet est. Etiam blandit facilisis ex, nec cursus metus pharetra quis. Fusce imperdiet nisl nibh, ac aliquet ante elementum vitae.</p>
+
+                <hr class="hr">
+
+                <h2>Opciones de Formato</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-negrita" class="btn d-block w-100 btn-primary" data-funcion="negrita">
+                            Bold (Negrita)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-cursiva" class="btn d-block w-100 btn-primary" data-funcion="cursiva">
+                            Italic (Cursiva)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-subrayado" class="btn d-block w-100 btn-primary" data-funcion="subrayado">
+                            Underline (Subrayado)
+                        </button>
+                    </div>
+                    <div class="col-12 col-md-4 my-1">
+                        <button id="btn-color" class="btn d-block w-100 btn-primary" data-funcion="color">
+                            Cambiar Color
+                        </button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 my-1">
+                        <input type="range" id="input-tamano" min="10" max="40" value="16">
+                    </div>
+                    <div class="col-12 col-md-6 my-1">
+                        <input type="text" id="input-texto" placeholder="Nuevo Texto">
+                        <button id="btn-actualizar" class="btn btn-primary">Actualizar Texto</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+function funcionNegrita() {
+    var botonNegrita = document.getElementById("btn-negrita");
+    var texto = document.getElementById("texto");
+    if (texto.style.fontWeight === "bold") {
+        texto.style.fontWeight = "normal";
+        botonNegrita.innerText = "Bold (Negrita)";
+    } else {
+        texto.style.fontWeight = "bold";
+        botonNegrita.innerText = "Bold (Desactivar)";
+    }
+}
+
+function funcionCursiva() {
+    var botonCursiva = document.getElementById("btn-cursiva");
+    var texto = document.getElementById("texto");
+    if (texto.style.fontStyle === "italic") {
+        texto.style.fontStyle = "normal";
+        botonCursiva.innerText = "Italic (Cursiva)";
+    } else {
+        texto.style.fontStyle = "italic";
+        botonCursiva.innerText = "Italic (Desactivar)";
+    }
+}
+
+function funcionSubrayado() {
+    var botonSubrayado = document.getElementById("btn-subrayado");
+    var texto = document.getElementById("texto");
+    if (texto.style.textDecoration === "underline") {
+        texto.style.textDecoration = "none";
+        botonSubrayado.innerText = "Underline (Subrayado)";
+    } else {
+        texto.style.textDecoration = "underline";
+        botonSubrayado
+    }
+}
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function funcionColor() {
+    var texto = document.getElementById("texto");
+    texto.style.color = getRandomColor();
+}
+
+function funcionTamano() {
+    var inputTamano = document.getElementById("input-tamano");
+    var texto = document.getElementById("texto");
+    texto.style.fontSize = inputTamano.value + "px";
+}
+
+function actualizarTexto() {
+    var nuevoTexto = document.getElementById("input-texto").value;
+    var texto = document.getElementById("texto");
+    texto.innerText = nuevoTexto;
+}
+
+document.getElementById("btn-actualizar").addEventListener("click", actualizarTexto);
+document.getElementById("input-tamano").addEventListener("input", funcionTamano);
+document.getElementById("btn-color").addEventListener("click", funcionColor);
+document.getElementById("btn-negrita").addEventListener("click", funcionNegrita);
+document.getElementById("btn-cursiva").addEventListener("click", funcionCursiva);
+document.getElementById("btn-subrayado").addEventListener("click", funcionSubrayado);
+    </script>
+</body>
+</html>
